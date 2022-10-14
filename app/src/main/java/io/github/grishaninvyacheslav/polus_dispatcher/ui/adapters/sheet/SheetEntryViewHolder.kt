@@ -11,11 +11,12 @@ class SheetEntryViewHolder(
     ISheetItemView {
     init {
         itemView.setOnClickListener { onItemClick?.invoke(this) }
+        binding.mapViewTouchBlock.setOnClickListener { onItemClick?.invoke(this) }
     }
 
     override var pos = -1
 
     override fun setTitle(title: String) {
-        // TODO("Not yet implemented")
+        binding.title.text = title
     }
 }

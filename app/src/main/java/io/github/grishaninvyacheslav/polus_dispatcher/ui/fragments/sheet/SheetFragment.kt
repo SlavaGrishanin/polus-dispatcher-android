@@ -32,7 +32,12 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         viewModel.sheetState.observe(viewLifecycleOwner) { renderSheetState(it) }
+    }
+
+    private fun initView() = with(binding){
+
     }
 
     private fun renderSheetState(state: SheetState) =
