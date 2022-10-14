@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:icon="@drawable/icon_current_job_48"
+        android:title="@string/page_1_title"/>
+    <item
+        android:id="@+id/sheet"
+        android:enabled="true"
+        android:icon="@drawable/icon_planned_jobs_48"
+        android:title="@string/sheet_title"/>
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@drawable/icon_profile_48"
+        android:title="@string/page_3_title"/>
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/icon_settings_48"
+        android:title="@string/page_4_title"/>
+</menu>
