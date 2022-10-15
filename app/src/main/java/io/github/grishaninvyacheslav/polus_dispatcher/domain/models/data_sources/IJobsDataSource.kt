@@ -13,8 +13,8 @@ interface IJobsDataSource {
         return listOf(
             JobEntity(
                 jobId = "b8efa17c-d478-4f48-b4a5-077e8f3edb1f",
-                startDate = "1665392400",
-                endDate = "1665421200",
+                startDate = "1667120400",
+                endDate = "1667149200",
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",
@@ -28,8 +28,8 @@ interface IJobsDataSource {
             ),
             JobEntity(
                 jobId = "73f5886e-363f-4cfc-ba99-8fdf5f89c924",
-                startDate = "1665738000",
-                endDate = "1665766800",
+                startDate = "1666688400",
+                endDate = "1666717200",
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",
@@ -43,8 +43,8 @@ interface IJobsDataSource {
             ),
             JobEntity(
                 jobId = "73f5886e-363f-4cfc-ba99-8fdf5f89c924",
-                startDate = "1641027600",
-                endDate = "1641056400",
+                startDate = "1666947600",
+                endDate = "1666976400",
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",

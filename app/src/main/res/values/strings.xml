@@ -29,4 +29,6 @@
     <string name="cancel">отмена</string>
     <string name="your_profile_title">ВАШ ПРОФИЛЬ</string>
     <string name="settings_page_title">НАСТРОЙКИ</string>
+    <string name="no_job">У вас пока нет задач на сегодня.\nНа этом экране отобразится ближайший заказ.</string>
+    <string name="loading_job">Идёт запрос заказа с сервера.</string>
 </resources>

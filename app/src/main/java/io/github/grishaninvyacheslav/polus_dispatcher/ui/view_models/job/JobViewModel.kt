@@ -1,31 +1,33 @@
-package io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet
+package io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.IJobsRepository
-import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.auth.AuthState
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.profile.IProfileRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.CancelableJobs
+import io.github.grishaninvyacheslav.polus_dispatcher.utils.getNearest
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SheetViewModel(
-    private val jobsRepository: IJobsRepository
+class JobViewModel(
+    private val jobsRepository: IJobsRepository,
+    private val profileRepository: IProfileRepository
 ) : ViewModel() {
-    private val mutableSheetState: MutableLiveData<SheetState> = MutableLiveData()
-    val sheetState: LiveData<SheetState>
+    private val mutableJobState: MutableLiveData<JobState> = MutableLiveData()
+    val jobState: LiveData<JobState>
         get() {
-            if(mutableSheetState.value != null){
-                return mutableSheetState
+            if(mutableJobState.value != null){
+                return mutableJobState
             }
-            return mutableSheetState.apply {
-                value = SheetState.Loading
+            return mutableJobState.apply {
+                value = JobState.Loading
                 CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
                     postValue(
-                        SheetState.Success(
-                            jobsRepository.getJobs()
+                        JobState.Success(
+                            jobsRepository.getJobs().getNearest(System.currentTimeMillis()/1000)
                         )
                     )
                 }.also { cancelableJobs.add(it) }
@@ -33,7 +35,7 @@ class SheetViewModel(
         }
 
     private val sheetExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        mutableSheetState.postValue(SheetState.Error(throwable))
+        mutableJobState.postValue(JobState.Error(throwable))
     }
 
     override fun onCleared() {
