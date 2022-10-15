@@ -2,10 +2,12 @@ package io.github.grishaninvyacheslav.polus_dispatcher.utils
 
 import android.text.format.DateFormat
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpandedEntity
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.RequiredVehicle
 import java.util.*
 
-fun List<JobEntity>.getNearest(currentTimestamp: Long): JobEntity? {
-    var nearest: JobEntity? = null
+fun List<JobExpandedEntity>.getNearest(currentTimestamp: Long): JobExpandedEntity? {
+    var nearest: JobExpandedEntity? = null
     for (job in this) {
         if (
             (
@@ -20,8 +22,26 @@ fun List<JobEntity>.getNearest(currentTimestamp: Long): JobEntity? {
     return nearest
 }
 
-fun String.timestampToClockTime(): String {
+fun Long.timestampToClockTime(): String {
     val cal: Calendar = Calendar.getInstance(Locale.ENGLISH)
-    cal.timeInMillis = this.toLong() * 1000
+    cal.timeInMillis = this * 1000
     return DateFormat.format("HH:mm", cal).toString()
+}
+
+fun JobExpandedEntity.toJobEntity(): JobEntity {
+    return JobEntity(
+        customerId = this.customer.id,
+        endDate = this.endDate,
+        executorId = this.executor.id,
+        id = this.id,
+        lat = this.lat,
+        lon = this.lon,
+        requiredVehicle = RequiredVehicle(
+            this.typeVehicle.type,
+            this.typeVehicle.modelVehicle.model
+        ),
+        startDate = this.startDate,
+        status = this.status,
+        title = this.title
+    )
 }

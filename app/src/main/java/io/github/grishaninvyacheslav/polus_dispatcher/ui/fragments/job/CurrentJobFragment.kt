@@ -52,7 +52,7 @@ class CurrentJobFragment :
         Log.d("[MYLOG]", "state: $state")
         when (state) {
             is JobState.Success -> {
-                if (state.job == null) {
+                if (state.jobExpanded == null) {
                     dataRoot.isVisible = false
                     placeholder.isVisible = true
                     progressBar.isVisible = false
@@ -64,7 +64,7 @@ class CurrentJobFragment :
                     dataRoot.isVisible = true
                     placeholder.isVisible = false
                     statusTitle.isVisible = true
-                    status.text = when (state.job.status) {
+                    status.text = when (state.jobExpanded.status) {
 
                         "planned" -> getString(R.string.free)
                         "preparing" -> getString(R.string.preparing)
@@ -77,10 +77,10 @@ class CurrentJobFragment :
                         else -> getString(R.string.unknown_status)
                     }
                     status.isVisible = true
-                    currentJobTitle.text = state.job.title
+                    currentJobTitle.text = state.jobExpanded.title
 
                     binding.mapView.map.mapObjects.addPlacemark(
-                        Point(state.job.lat.toDouble(), state.job.lon.toDouble()),
+                        Point(state.jobExpanded.lat.toDouble(), state.jobExpanded.lon.toDouble()),
                         ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location),
                         IconStyle().apply {
                             scale = 0.2f
@@ -89,7 +89,7 @@ class CurrentJobFragment :
 
                     binding.mapView.map.move(
                         CameraPosition(
-                            Point(state.job.lat.toDouble(), state.job.lon.toDouble()),
+                            Point(state.jobExpanded.lat.toDouble(), state.jobExpanded.lon.toDouble()),
                             11.0f,
                             0.0f,
                             0.0f
@@ -100,18 +100,18 @@ class CurrentJobFragment :
 
                     binding.shareWithNavigator.setOnClickListener {
                         val intent = Intent(Intent.ACTION_VIEW);
-                        intent.data = Uri.parse("geo:${state.job.lat},${state.job.lon}?z=11");
+                        intent.data = Uri.parse("geo:${state.jobExpanded.lat},${state.jobExpanded.lon}?z=11");
                         startActivity(intent)
                     }
 
                     time.text = String.format(
                         getString(R.string.current_job_time),
-                        state.job.startDate.timestampToClockTime(),
-                        state.job.endDate.timestampToClockTime()
+                        state.jobExpanded.startDate.timestampToClockTime(),
+                        state.jobExpanded.endDate.timestampToClockTime()
                     )
                     requiredVehicle.text =
-                        state.job.requiredVehicle.model ?: state.job.requiredVehicle.characteristic
-                    state.job.customer?.let {
+                        state.jobExpanded.typeVehicle.modelVehicle.model ?: state.jobExpanded.typeVehicle.type
+                    state.jobExpanded.customer?.let {
                         customerBackground.isVisible = true
                         customerTitle.isVisible = true
                         customer.isVisible = true
@@ -129,7 +129,7 @@ class CurrentJobFragment :
                         dialogBuilder.setView(dialogBinding.root)
                         val alertDialog: AlertDialog = dialogBuilder.create()
                         dialogBinding.apply {
-                            when (state.job.status) {
+                            when (state.jobExpanded.status) {
                                 "planned" -> statusFree.isChecked = true
                                 "preparing" -> statusPreparing.isChecked = true
                                 "heading" -> statusHeading.isChecked = true
@@ -140,49 +140,49 @@ class CurrentJobFragment :
                                 "completed", -> statusCompleted.isChecked = true
                             }
                             statusFree.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "planned"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusPreparing.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "preparing"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusHeading.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "heading"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusPaused.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "paused"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusEngaged.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "in_progress"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusUnavailable.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "troubled"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusResting.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "resting"
                                 })
                                 alertDialog.dismiss()
                             }
                             statusCompleted.setOnClickListener {
-                                viewModel.updateJob(state.job.apply {
+                                viewModel.updateJob(state.jobExpanded.apply {
                                     status = "completed"
                                 })
                                 alertDialog.dismiss()

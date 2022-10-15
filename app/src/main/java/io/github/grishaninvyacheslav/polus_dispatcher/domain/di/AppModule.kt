@@ -54,8 +54,8 @@ val appModule = module {
     // API Module
     single(named("baseUrl")) { provideBaseUrl() }
     single { provideAuthApi(get(named("baseUrl")), get()) }
+    single { provideJobApi(get(named("baseUrl")), get()) }
     single { provideGson() }
-    single { provideJobApi() }
     single { provideExecutorApi() }
 
     single<PolusCacheDatabase> { providePolusCacheDB(get()) }
@@ -108,8 +108,23 @@ fun provideAuthApi(
 
 fun provideGson(): Gson = GsonBuilder().create()
 
-fun provideJobApi(): IJobsDataSource {
-    return object : IJobsDataSource {}
+fun provideJobApi(
+    baseUrl: String,
+    gson: Gson
+): IJobsDataSource {
+    val loggingInterceptor = HttpLoggingInterceptor()
+        .apply { level = HttpLoggingInterceptor.Level.BODY }
+    val client = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+
+    return Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .client(client)
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .build()
+        .create(IJobsDataSource::class.java)
 }
 
 fun provideExecutorApi(): IExecutorDataSource {

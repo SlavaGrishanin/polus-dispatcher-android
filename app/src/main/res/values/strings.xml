@@ -6,7 +6,7 @@
     <string name="settings_title">Настройки</string>
     <string name="open_in_navigator">открыть в навигаторе</string>
     <string name="exit_from_account">Выйти из профиля</string>
-    <string name="login_phone_hint">Телефон</string>
+    <string name="login_phone_hint">Логин</string>
     <string name="login_password_hint">Пароль</string>
     <string name="remember_me">Запомнить меня</string>
     <string name="sign_in">Войти</string>

@@ -3,7 +3,7 @@ package io.github.grishaninvyacheslav.polus_dispatcher.domain.models.data_source
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.ExecutorEntity
 
 interface IExecutorDataSource {
-    fun getExecutor(executorId: String): ExecutorEntity {
+    fun getExecutor(executorId: Int): ExecutorEntity {
         Thread.sleep(2000)
         return ExecutorEntity(
             executorId = "146d48e4-2ed0-40db-88dc-56cfcc98e263",
@@ -16,7 +16,7 @@ interface IExecutorDataSource {
         )
     }
 
-    fun updateExecutor(executorId: String, profile: ExecutorEntity){
+    fun updateExecutor(executorId: Int, profile: ExecutorEntity){
         Thread.sleep(2000)
     }
 }

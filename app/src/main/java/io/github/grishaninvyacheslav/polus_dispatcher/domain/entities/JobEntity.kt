@@ -1,25 +1,19 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.domain.entities
 
 data class JobEntity(
-    val jobId: String,
-    val startDate: String,
-    val endDate: String,
-    var status: String,
-    val lon: String,
-    val lat: String,
-    val customer: Customer?,
+    val customerId: Int,
+    val endDate: Long,
+    val executorId: Int,
+    val id: Int,
+    val lat: Double,
+    val lon: Double,
     val requiredVehicle: RequiredVehicle,
-    val executorId: String,
+    val startDate: Long,
+    val status: String,
     val title: String
 )
 
 data class RequiredVehicle(
-    val characteristic: String?,
-    val model: String?
-)
-
-data class Customer(
-    val customerId: String,
-    val login: String,
-    val name: String
+    val type: String,
+    val model: String
 )

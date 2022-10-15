@@ -20,7 +20,7 @@
             android:id="@+id/login_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="text"
             android:textColor="@color/white"
             tools:text="+7 985 148 85 81" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -3,11 +3,12 @@ package io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpandedEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.IJobsRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.profile.IProfileRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.CancelableJobs
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.getNearest
+import io.github.grishaninvyacheslav.polus_dispatcher.utils.toJobEntity
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -39,10 +40,10 @@ class JobViewModel(
         mutableJobState.postValue(JobState.Error(throwable))
     }
 
-    fun updateJob(job: JobEntity) {
+    fun updateJob(jobExpanded: JobExpandedEntity) {
         CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
-            jobsRepository.updateJob(job)
-            mutableJobState.postValue(JobState.Success(job))
+            jobsRepository.updateJobStatus(jobExpanded.toJobEntity())
+            mutableJobState.postValue(JobState.Success(jobExpanded))
         }.also { cancelableJobs.add(it) }
     }
 

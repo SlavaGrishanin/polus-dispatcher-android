@@ -10,7 +10,7 @@ import com.github.terrakok.cicerone.Router
 import com.yandex.mapkit.MapKitFactory
 import io.github.grishaninvyacheslav.polus_dispatcher.R
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.FragmentSheetBinding
-import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpandedEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.TabTag
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.adapters.sheet.ISheetDataModel
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.adapters.sheet.ISheetItemView
@@ -64,7 +64,7 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         }
     }
 
-    private fun initList(log: List<JobEntity>) = with(binding) {
+    private fun initList(log: List<JobExpandedEntity>) = with(binding) {
         sheetList.layoutManager = LinearLayoutManager(requireContext())
         adapter = SheetListAdapter(
             sheetDataModel.apply { sheetEntries = log },
@@ -86,7 +86,7 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
     private var adapter: SheetListAdapter? = null
 
     private val sheetDataModel = object : ISheetDataModel {
-        var sheetEntries = listOf<JobEntity>()
+        var sheetEntries = listOf<JobExpandedEntity>()
         override fun getCount() = sheetEntries.size
         override fun bindView(view: ISheetItemView) = with(sheetEntries[view.pos]) {
             with(view) {

@@ -5,17 +5,17 @@ import io.github.grishaninvyacheslav.polus_dispatcher.BuildConfig
 
 class PreferencesRepository(
     context: Context
-): IPreferencesRepository {
-    override fun saveString(key: String, value: String) {
-        editor.putString(key, value)
+) : IPreferencesRepository {
+    override fun saveInt(key: String, value: Int) {
+        editor.putInt(key, value)
         editor.commit()
     }
 
-    override fun getString(key: String): String? {
-        return sharedPref.getString(key, null)
+    override fun getInt(key: String): Int {
+        return sharedPref.getInt(key, -1)
     }
 
-    override fun removeString(key: String){
+    override fun removeInt(key: String) {
         editor.remove(key)
         editor.apply()
     }
