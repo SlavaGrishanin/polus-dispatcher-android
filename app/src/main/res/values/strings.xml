@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Диспетчер Полюс</string>
     <string name="job_title">Задача</string>
-    <string name="sheet_title">Обх.Лист</string>
-    <string name="page_3_title">Профиль</string>
-    <string name="page_4_title">Настройки</string>
+    <string name="sheet_short_title">Обх.Лист</string>
+    <string name="profile_title">Профиль</string>
+    <string name="settings_title">Настройки</string>
     <string name="open_in_navigator">открыть в навигаторе</string>
     <string name="exit_from_account">Выйти из профиля</string>
     <string name="login_phone_hint">Телефон</string>
@@ -15,6 +15,18 @@
     <string name="no_internet_connection_error">Нет подключения к интернету</string>
     <string name="server_not_responding_error">Сервер %1$s не отвечает</string>
     <string name="unknown_error">Ошибка: %1$s</string>
-    <string name="current_job_title">Ваша текущая задача:</string>
+    <string name="current_job_title">ВАША ТЕКУЩАЯ ЗАДАЧА</string>
     <string name="share_with_navigator">В наваигатор</string>
+    <string name="planned_job_title">НАЗНАЧЕННАЯ ВАМ ЗАДАЧА</string>
+    <string name="sheet_title">ОБХОДНОЙ ЛИСТ</string>
+    <string name="free">не-занят-задачей</string>
+    <string name="preparing">подготовка-тс</string>
+    <string name="status_heading">тс-движется-к-заказу</string>
+    <string name="status_paused">работы-приастановлены</string>
+    <string name="status_engaged">тс-выполняет-работы</string>
+    <string name="status_unavailable">заказ-невыполним</string>
+    <string name="status_resting">отдых</string>
+    <string name="cancel">отмена</string>
+    <string name="your_profile_title">ВАШ ПРОФИЛЬ</string>
+    <string name="settings_page_title">НАСТРОЙКИ</string>
 </resources>

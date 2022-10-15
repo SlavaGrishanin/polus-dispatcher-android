@@ -7,6 +7,8 @@ interface IScreens {
     fun auth(tabTag: TabTag): Screen
     fun currentJob(tabTag: TabTag): Screen
     fun sheet(tabTag: TabTag): Screen
+    fun sheetEntry(tabTag: TabTag): Screen
+    fun profile(tabTag: TabTag): Screen
     fun settings(tabTag: TabTag): Screen
 
 

@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/drawable/layout_card_bg.xml" value="0.2065" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/dialog_status_picker.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_auth.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_current_job.xml" value="0.264" />
-        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_settings.xml" value="0.1" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_sheet.xml" value="0.176" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_sheet_entry.xml" value="0.152" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_tab_container.xml" value="0.1" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_test_main.xml" value="0.1" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_test_map.xml" value="0.1" />
@@ -16,6 +19,7 @@
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/item_sheet_entry.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/view_progress_button.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Saeng/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/activity_list_item.xml" value="0.11666666666666667" />
       </map>
     </option>
   </component>

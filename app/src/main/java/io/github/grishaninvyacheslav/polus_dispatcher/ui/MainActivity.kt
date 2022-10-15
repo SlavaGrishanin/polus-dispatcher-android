@@ -18,6 +18,7 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.di.providers.LocalC
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.BackButtonListener
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.auth.AuthTabContainerFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.job.CurrentJobTabContainerFragment
+import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.profile.ProfileTabContainerFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.settings.SettingsTabContainerFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.sheet.SheetTabContainerFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.test.TestTabContainerFragment
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity(), IBottomNavigation {
             when (item.itemId) {
                 R.id.currentJob -> openTab(TabTag.CURRENT_JOB)
                 R.id.sheet -> openTab(TabTag.SHEET)
-                R.id.page_3 -> openTab(TabTag.PAGE_3)
+                R.id.profile -> openTab(TabTag.PROFILE)
                 R.id.settings -> openTab(TabTag.SETTINGS)
             }
             return@setOnItemSelectedListener true
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity(), IBottomNavigation {
                 TabTag.AUTHORIZATION -> AuthTabContainerFragment.newInstance(tabTag)
                 TabTag.CURRENT_JOB -> CurrentJobTabContainerFragment.newInstance(tabTag)
                 TabTag.SHEET -> SheetTabContainerFragment.newInstance(tabTag)
-                TabTag.PAGE_3 -> TestTabContainerFragment.newInstance(tabTag)
+                TabTag.PROFILE -> ProfileTabContainerFragment.newInstance(tabTag)
                 TabTag.SETTINGS -> SettingsTabContainerFragment.newInstance(tabTag)
             }
             transaction.add(
@@ -121,7 +122,7 @@ class MainActivity : AppCompatActivity(), IBottomNavigation {
                 TabTag.AUTHORIZATION -> openTab(tabTag)
                 TabTag.CURRENT_JOB -> bottomNavigationBar.selectedItemId = R.id.currentJob
                 TabTag.SHEET -> bottomNavigationBar.selectedItemId = R.id.sheet
-                TabTag.PAGE_3 -> bottomNavigationBar.selectedItemId = R.id.page_3
+                TabTag.PROFILE -> bottomNavigationBar.selectedItemId = R.id.profile
                 TabTag.SETTINGS -> bottomNavigationBar.selectedItemId = R.id.settings
             }
         }

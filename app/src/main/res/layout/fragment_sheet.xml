@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondary_background"
+        android:paddingHorizontal="@dimen/outer_margin"
+        android:paddingVertical="@dimen/inner_margin"
+        android:text="@string/sheet_title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/major_text_size"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sheet_list"
@@ -9,4 +23,4 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/outer_margin" />
-</FrameLayout>
+</LinearLayout>

@@ -20,7 +20,9 @@
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:background="@color/secondary_background"
+                android:paddingHorizontal="@dimen/outer_margin"
+                android:paddingVertical="@dimen/inner_margin"
                 android:text="@string/current_job_title"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -35,10 +37,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/outer_margin"
+
                 android:text="Заказ на Самосвал для работ на Карьере номер 9"
                 android:textColor="@color/white"
                 android:textSize="@dimen/major_text_size"
-
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title" />

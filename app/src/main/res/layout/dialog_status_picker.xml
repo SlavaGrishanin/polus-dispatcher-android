@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_free"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/free"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_preparing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/preparing"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_heading"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_paused"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_paused"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_engaged"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_engaged"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_unavailable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_unavailable"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_resting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_resting"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="@dimen/outer_margin"
+            android:backgroundTint="@color/button_color"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/major_text_size"
+            app:cornerRadius="100dp" />
+    </LinearLayout>
+</ScrollView>

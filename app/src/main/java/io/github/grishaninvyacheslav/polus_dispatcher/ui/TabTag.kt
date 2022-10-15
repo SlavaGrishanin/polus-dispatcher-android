@@ -4,6 +4,6 @@ enum class TabTag {
     AUTHORIZATION,
     CURRENT_JOB,
     SHEET,
-    PAGE_3,
+    PROFILE,
     SETTINGS
 }

@@ -8,15 +8,15 @@
         android:id="@+id/sheet"
         android:enabled="true"
         android:icon="@drawable/icon_planned_jobs_48"
-        android:title="@string/sheet_title"/>
+        android:title="@string/sheet_short_title"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/profile"
         android:enabled="true"
         android:icon="@drawable/icon_profile_48"
-        android:title="@string/page_3_title"/>
+        android:title="@string/profile_title"/>
     <item
         android:id="@+id/settings"
         android:enabled="true"
         android:icon="@drawable/icon_settings_48"
-        android:title="@string/page_4_title"/>
+        android:title="@string/settings_title"/>
 </menu>

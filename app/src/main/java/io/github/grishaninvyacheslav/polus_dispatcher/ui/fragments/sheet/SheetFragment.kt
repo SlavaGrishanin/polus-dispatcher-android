@@ -57,7 +57,7 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         sheetList.layoutManager = LinearLayoutManager(requireContext())
         adapter = SheetListAdapter(
             sheetDataModel.apply { sheetEntries = log },
-            onItemClick = { },
+            onItemClick = { cicerone.router.navigateTo(screens.sheetEntry(containerTag)) },
         )
         sheetList.adapter = adapter
     }

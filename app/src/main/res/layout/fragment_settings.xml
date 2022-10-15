@@ -4,6 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondary_background"
+        android:paddingHorizontal="@dimen/outer_margin"
+        android:paddingVertical="@dimen/inner_margin"
+        android:text="@string/settings_page_title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/major_text_size"
+        android:textStyle="bold"/>
+
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:id="@+id/sign_out"
