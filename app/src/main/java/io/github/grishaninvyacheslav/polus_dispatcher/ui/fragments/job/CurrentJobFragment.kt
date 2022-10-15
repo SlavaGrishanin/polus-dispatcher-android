@@ -44,24 +44,7 @@ class CurrentJobFragment :
         super.onViewCreated(view, savedInstanceState)
         viewModel.jobState.observe(viewLifecycleOwner) { renderJobState(it) }
         with(binding) {
-            mapViewBlock.setOnClickListener {  }
-            status.setOnClickListener {
-                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-                val dialogBinding = DialogStatusPickerBinding.inflate(LayoutInflater.from(context))
-                dialogBuilder.setView(dialogBinding.root)
-                val alertDialog: AlertDialog = dialogBuilder.create()
-                dialogBinding.apply {
-                    statusFree.setOnClickListener { }
-                    statusPreparing.setOnClickListener { }
-                    statusHeading.setOnClickListener { }
-                    statusPaused.setOnClickListener { }
-                    statusEngaged.setOnClickListener { }
-                    statusUnavailable.setOnClickListener { }
-                    statusResting.setOnClickListener { }
-                    cancel.setOnClickListener { alertDialog.dismiss() }
-                }
-                alertDialog.show()
-            }
+            mapViewBlock.setOnClickListener { }
         }
     }
 
@@ -81,6 +64,17 @@ class CurrentJobFragment :
                     dataRoot.isVisible = true
                     placeholder.isVisible = false
                     statusTitle.isVisible = true
+                    status.text = when (state.job.status) {
+                        "planned" -> getString(R.string.free)
+                        "preparing" -> getString(R.string.preparing)
+                        "heading" -> getString(R.string.status_heading)
+                        "paused" -> getString(R.string.status_paused)
+                        "in_progress" -> getString(R.string.status_engaged)
+                        "troubled" -> getString(R.string.status_unavailable)
+                        "resting" -> getString(R.string.status_resting)
+                        "completed " -> getString(R.string.status_completed)
+                        else -> getString(R.string.unknown_status)
+                    }
                     status.isVisible = true
                     currentJobTitle.text = state.job.title
 
@@ -93,7 +87,12 @@ class CurrentJobFragment :
                     )
 
                     binding.mapView.map.move(
-                        CameraPosition(Point(state.job.lat.toDouble(), state.job.lon.toDouble()), 11.0f, 0.0f, 0.0f),
+                        CameraPosition(
+                            Point(state.job.lat.toDouble(), state.job.lon.toDouble()),
+                            11.0f,
+                            0.0f,
+                            0.0f
+                        ),
                         Animation(Animation.Type.SMOOTH, 0F),
                         null
                     )
@@ -120,6 +119,76 @@ class CurrentJobFragment :
                         customerBackground.isVisible = false
                         customerTitle.isVisible = false
                         customer.isVisible = false
+                    }
+                    status.setOnClickListener {
+                        val dialogBuilder: AlertDialog.Builder =
+                            AlertDialog.Builder(requireContext())
+                        val dialogBinding =
+                            DialogStatusPickerBinding.inflate(LayoutInflater.from(context))
+                        dialogBuilder.setView(dialogBinding.root)
+                        val alertDialog: AlertDialog = dialogBuilder.create()
+                        dialogBinding.apply {
+                            when (state.job.status) {
+                                "planned" -> statusFree.isChecked = true
+                                "preparing" -> statusPreparing.isChecked = true
+                                "heading" -> statusHeading.isChecked = true
+                                "paused" -> statusPaused.isChecked = true
+                                "in_progress" -> statusEngaged.isChecked = true
+                                "troubled" -> statusUnavailable.isChecked = true
+                                "resting" -> statusResting.isChecked = true
+                                "completed", -> statusCompleted.isChecked = true
+                            }
+                            statusFree.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "planned"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusPreparing.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "preparing"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusHeading.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "heading"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusPaused.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "paused"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusEngaged.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "in_progress"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusUnavailable.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "troubled"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusResting.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "resting"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            statusCompleted.setOnClickListener {
+                                viewModel.updateJob(state.job.apply {
+                                    status = "completed"
+                                })
+                                alertDialog.dismiss()
+                            }
+                            cancel.setOnClickListener { alertDialog.dismiss() }
+                        }
+                        alertDialog.show()
                     }
                 }
             }

@@ -32,4 +32,6 @@
     <string name="no_job">У вас пока нет задач на сегодня.\nНа этом экране отобразится ближайший заказ.</string>
     <string name="loading_job">Загрузка заказа.</string>
     <string name="current_job_time">ВРЕМЯ: %1$s - %2$s</string>
+    <string name="status_completed">заказ-завершён</string>
+    <string name="unknown_status">неизвестный-статус</string>
 </resources>

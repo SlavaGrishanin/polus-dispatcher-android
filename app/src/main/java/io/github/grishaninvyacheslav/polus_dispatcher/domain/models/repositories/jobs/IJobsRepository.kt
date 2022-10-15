@@ -5,4 +5,5 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
 interface IJobsRepository {
     suspend fun getJobs(): List<JobEntity>
     suspend fun wereUpdated(): Boolean
+    suspend fun updateJob(job: JobEntity)
 }

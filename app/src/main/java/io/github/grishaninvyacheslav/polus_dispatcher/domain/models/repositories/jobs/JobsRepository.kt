@@ -15,4 +15,8 @@ class JobsRepository(
     override suspend fun wereUpdated(): Boolean {
         return jobsApi.isExecutorJobsUpdated(authRepository.getLocalExecutorId()!!)
     }
+
+    override suspend fun updateJob(job: JobEntity) {
+        // TODO("Not yet implemented")
+    }
 }

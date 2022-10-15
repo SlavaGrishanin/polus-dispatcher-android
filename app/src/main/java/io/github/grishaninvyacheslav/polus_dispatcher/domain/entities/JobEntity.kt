@@ -4,7 +4,7 @@ data class JobEntity(
     val jobId: String,
     val startDate: String,
     val endDate: String,
-    val status: String,
+    var status: String,
     val lon: String,
     val lat: String,
     val customer: Customer?,

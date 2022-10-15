@@ -100,6 +100,19 @@
             android:layout_height="1dp"
             android:background="@color/secondary_background" />
 
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/status_completed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_completed"
+            android:textSize="@dimen/major_text_size"
+            app:buttonTint="@color/button_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondary_background" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
