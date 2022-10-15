@@ -7,7 +7,7 @@ data class JobEntity(
     val status: String,
     val lon: String,
     val lat: String,
-    val customerId: String,
+    val customer: Customer?,
     val requiredVehicle: RequiredVehicle,
     val executorId: String,
     val title: String
@@ -16,4 +16,10 @@ data class JobEntity(
 data class RequiredVehicle(
     val characteristic: String?,
     val model: String?
+)
+
+data class Customer(
+    val customerId: String,
+    val login: String,
+    val name: String
 )

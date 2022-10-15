@@ -36,6 +36,7 @@ class CurrentJobFragment :
         super.onViewCreated(view, savedInstanceState)
         viewModel.jobState.observe(viewLifecycleOwner) { renderJobState(it) }
         with(binding) {
+            mapViewBlock.setOnClickListener {  }
             status.setOnClickListener {
                 val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
                 val dialogBinding = DialogStatusPickerBinding.inflate(LayoutInflater.from(context))
@@ -81,8 +82,16 @@ class CurrentJobFragment :
                     )
                     requiredVehicle.text =
                         state.job.requiredVehicle.model ?: state.job.requiredVehicle.characteristic
-                    customer.text = state.job.customerId
-
+                    state.job.customer?.let {
+                        customerBackground.isVisible = true
+                        customerTitle.isVisible = true
+                        customer.isVisible = true
+                        customer.text = it.name + "\n" + it.login
+                    } ?: run {
+                        customerBackground.isVisible = false
+                        customerTitle.isVisible = false
+                        customer.isVisible = false
+                    }
                 }
             }
             JobState.Loading -> {

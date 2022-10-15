@@ -1,5 +1,6 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.domain.models.data_sources
 
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.Customer
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.RequiredVehicle
 
@@ -18,7 +19,11 @@ interface IJobsDataSource {
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",
-                customerId = "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                customer = Customer(
+                    "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                    "78005553535",
+                    "Йцукен Фыва"
+                ),
                 requiredVehicle = RequiredVehicle(
                     characteristic = "Погрузчик_Вилочный_Диз_3т/6м",
                     model = "KOMATSU FD30T-17"
@@ -33,7 +38,11 @@ interface IJobsDataSource {
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",
-                customerId = "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                customer = Customer(
+                    "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                    "78005553535",
+                    "Йцукен Фыва"
+                ),
                 requiredVehicle = RequiredVehicle(
                     characteristic = "Погрузчик_Вилочный_Диз_3т/6м",
                     model = "KOMATSU FD30T-17"
@@ -48,7 +57,11 @@ interface IJobsDataSource {
                 status = "planning",
                 lon = "56.868903",
                 lat = "42.035278",
-                customerId = "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                customer = Customer(
+                    "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
+                    "78005553535",
+                    "Йцукен Фыва"
+                ),
                 requiredVehicle = RequiredVehicle(
                     characteristic = "Погрузчик_Вилочный_Диз_3т/6м",
                     model = "KOMATSU FD30T-17"
