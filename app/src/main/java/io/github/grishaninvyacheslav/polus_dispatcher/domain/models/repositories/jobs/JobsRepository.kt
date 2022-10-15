@@ -14,30 +14,44 @@ class JobsRepository(
     private val authRepository: IAuthRepository,
     private val cache: PolusCacheDao
 ) : IJobsRepository {
-    override suspend fun getJobs(): List<JobExpandedEntity> {
+    override suspend fun getJobs(): FetchedJobs {
         val executorId = authRepository.getLocalExecutorId()!!
-        with(jobsApi.executorJobs(executorId.toString()).awaitResponse()) {
-            when (code()) {
-                200 -> {
-//                    if (cache.getById(executorId) == null) {
-//                        cache.insert(
-//                            PolusCacheListing(executorId, body()!!)
-//                        )
-//                    } else {
-//                        cache.updateCache(PolusCacheListing(executorId, body()!!))
-//                    }
-                    return body()!!
+
+        try {
+            with(jobsApi.executorJobs(executorId.toString()).awaitResponse()) {
+                return when (code()) {
+                    200 -> {
+                        if (cache.getById(executorId) == null) {
+                            cache.insert(
+                                PolusCacheListing(executorId, body()!!)
+                            )
+                        } else {
+                            cache.updateCache(PolusCacheListing(executorId, body()!!))
+                        }
+                        FetchedJobs.SuccessJobFetch(body()!!)
+                    }
+                    else -> cache.getById(executorId)?.let {
+                        FetchedJobs.CachedJobs(it.jobs, 0, HttpException(this))
+                    } ?: FetchedJobs.CachedJobs(listOf(), 0, HttpException(this))
                 }
-                else -> throw HttpException(this)
             }
+        } catch (e: Exception) {
+            if (e is java.net.ConnectException || e is java.net.SocketTimeoutException) {
+                return cache.getById(executorId)?.let {
+                    FetchedJobs.CachedJobs(it.jobs, 0, e)
+                } ?: FetchedJobs.CachedJobs(listOf(), 0, e)
+            }
+            throw e
         }
     }
 
     override suspend fun updateJobStatus(jobEntity: JobEntity) {
+        // Обновить локальную
+        // Запланировать запрос
         val executorId = authRepository.getLocalExecutorId()!!
         with(jobsApi.updateJob(jobEntity).awaitResponse()) {
             when (code()) {
-                200 -> { }
+                200 -> {}
                 else -> throw HttpException(this)
             }
         }

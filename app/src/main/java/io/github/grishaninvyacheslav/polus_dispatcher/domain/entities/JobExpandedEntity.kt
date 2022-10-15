@@ -9,7 +9,9 @@ data class JobExpandedEntity(
     val lat: Double,
     var status: String,
     val customer: Customer,
-    val typeVehicle: TypeVehicle,
+    val typeVehicle: String,
+    val modelVehicle: String,
+    val numberVehicle: String,
     val executor: Executor
 )
 
@@ -19,13 +21,6 @@ data class Customer(
     val password: String,
     val type: String,
     val name: String
-)
-
-data class TypeVehicle(
-    val id: Int,
-    val type: String,
-    val vehicleNumber: String,
-    val modelVehicle: ModelVehicle
 )
 
 data class ModelVehicle(

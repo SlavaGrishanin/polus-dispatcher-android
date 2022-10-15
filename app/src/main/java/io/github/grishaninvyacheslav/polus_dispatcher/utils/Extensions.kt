@@ -28,6 +28,12 @@ fun Long.timestampToClockTime(): String {
     return DateFormat.format("HH:mm", cal).toString()
 }
 
+fun Long.timestampToDate(): String {
+    val cal: Calendar = Calendar.getInstance(Locale.ENGLISH)
+    cal.timeInMillis = this * 1000
+    return DateFormat.format("HH:mm dd.MM.yy", cal).toString()
+}
+
 fun JobExpandedEntity.toJobEntity(): JobEntity {
     return JobEntity(
         customerId = this.customer.id,
@@ -37,8 +43,8 @@ fun JobExpandedEntity.toJobEntity(): JobEntity {
         lat = this.lat,
         lon = this.lon,
         requiredVehicle = RequiredVehicle(
-            this.typeVehicle.type,
-            this.typeVehicle.modelVehicle.model
+            this.typeVehicle,
+            this.modelVehicle
         ),
         startDate = this.startDate,
         status = this.status,

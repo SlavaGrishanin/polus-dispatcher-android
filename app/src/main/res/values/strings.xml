@@ -34,4 +34,6 @@
     <string name="current_job_time">ВРЕМЯ: %1$s - %2$s</string>
     <string name="status_completed">заказ-завершён</string>
     <string name="unknown_status">неизвестный-статус</string>
+    <string name="internet_is_lost_used_cache">Нет интернета. Даны данные за %1$s</string>
+    <string name="server_is_lost_used_cache">Сервер не отвечает. Даны данные за %1$s</string>
 </resources>

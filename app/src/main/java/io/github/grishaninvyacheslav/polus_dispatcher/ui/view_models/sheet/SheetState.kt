@@ -5,5 +5,6 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpande
 sealed class SheetState {
     object Loading: SheetState()
     data class Error(val error: Throwable): SheetState()
-    data class Success(val sheet: List<JobExpandedEntity>): SheetState()
+    data class Online(val sheet: List<JobExpandedEntity>): SheetState()
+    data class Offline(val sheet: List<JobExpandedEntity>?, val offlineDate: Long, val exception: Exception): SheetState()
 }

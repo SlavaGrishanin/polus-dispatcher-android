@@ -3,6 +3,7 @@ package io.github.grishaninvyacheslav.polus_dispatcher.ui
 import android.app.Activity
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
@@ -129,7 +130,12 @@ class MainActivity : AppCompatActivity(), IBottomNavigation {
     }
 
     override fun showErrorMessage(message: String) {
-        binding.errorMessage.text = message
+        if(message.isNullOrBlank()){
+            binding.errorMessage.isVisible = false
+        } else {
+            binding.errorMessage.isVisible = true
+            binding.errorMessage.text = message
+        }
     }
 
     override fun onBackPressed() {

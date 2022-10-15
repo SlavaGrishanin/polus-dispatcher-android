@@ -48,7 +48,7 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         Log.d("[MYLOG]", "renderSheetState: $state")
         with(binding){
             when (state) {
-                is SheetState.Success -> {
+                is SheetState.Online -> {
                     initList(state.sheet)
                     progressBar.isVisible = false
                     sheetList.isVisible = true
