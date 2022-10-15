@@ -9,4 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_background_tint">#FF002D</color>
     <color name="half_transparent_background">#80000000</color>
+    <color name="background_color">#373A36</color>
+    <color name="secondary_background">#18191D</color>
+    <color name="active_color">#FF6C00</color>
+    <color name="background_color_light">#80373A36</color>
+    <color name="background_color_dark_light">#535352</color>
+    <color name="card_title">#CFCFCF</color>
+    <color name="button_color">#FAB439</color>
 </resources>

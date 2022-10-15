@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/active_color"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/background_color">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:text="@string/current_job_title"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/major_text_size"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/current_job_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:text="Заказ на Самосвал для работ на Карьере номер 9"
+                android:textColor="@color/white"
+                android:textSize="@dimen/major_text_size"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+            <com.yandex.mapkit.mapview.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="@dimen/inner_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/current_job_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share_with_navigator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:layout_marginTop="@dimen/inner_margin"
+                android:backgroundTint="@color/button_color"
+                android:text="@string/share_with_navigator"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="@id/mapView"
+                app:layout_constraintTop_toTopOf="@id/mapView" />
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:layout_marginTop="@dimen/inner_margin"
+                android:gravity="center"
+                android:text="ВРЕМЯ: 12:00 - 20:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/major_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mapView" />
+
+            <View
+                android:id="@+id/required_vehicle_background"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:background="@drawable/layout_card_bg"
+                app:layout_constraintBottom_toBottomOf="@id/required_vehicle"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/required_vehicle_title" />
+
+            <TextView
+                android:id="@+id/required_vehicle_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:layout_marginTop="@dimen/inner_margin"
+                android:paddingTop="@dimen/inner_margin"
+                android:text="ТЕХНИКА"
+                android:textColor="@color/card_title"
+                android:textSize="@dimen/major_text_size"
+                app:layout_constraintLeft_toLeftOf="@id/required_vehicle_background"
+                app:layout_constraintRight_toRightOf="@id/required_vehicle_background"
+                app:layout_constraintTop_toBottomOf="@id/time" />
+
+            <TextView
+                android:id="@+id/required_vehicle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:paddingVertical="@dimen/inner_margin"
+                android:text="Погрузчик_Вилочный_Диз_3т/6м"
+                android:textColor="@color/white"
+                android:textSize="@dimen/major_text_size"
+                app:layout_constraintLeft_toLeftOf="@id/required_vehicle_background"
+                app:layout_constraintRight_toRightOf="@id/required_vehicle_background"
+                app:layout_constraintTop_toBottomOf="@id/required_vehicle_title" />
+
+            <View
+                android:id="@+id/customer_background"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:background="@drawable/layout_card_bg"
+                app:layout_constraintBottom_toBottomOf="@id/cutomer"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/customer_title" />
+
+            <TextView
+                android:id="@+id/customer_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:layout_marginTop="@dimen/inner_margin"
+                android:paddingTop="@dimen/inner_margin"
+                android:text="ЗАКАЗЧИК"
+                android:textColor="@color/card_title"
+                android:textSize="@dimen/major_text_size"
+                app:layout_constraintLeft_toLeftOf="@id/customer_background"
+                app:layout_constraintRight_toRightOf="@id/customer_background"
+                app:layout_constraintTop_toBottomOf="@id/required_vehicle_background" />
+
+            <TextView
+                android:id="@+id/cutomer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/outer_margin"
+                android:paddingVertical="@dimen/inner_margin"
+                android:text="Йцукен Фыва\n+7 800 555 35 35"
+                android:textColor="@color/white"
+                android:textSize="@dimen/major_text_size"
+                app:layout_constraintLeft_toLeftOf="@id/required_vehicle_background"
+                app:layout_constraintRight_toRightOf="@id/required_vehicle_background"
+                app:layout_constraintTop_toBottomOf="@id/customer_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/status_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/outer_margin"
+        android:layout_marginTop="@dimen/outer_margin"
+        android:gravity="center"
+        android:text="СТАТУС"
+        android:textColor="@color/white"
+        android:textSize="@dimen/major_text_size" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/outer_margin"
+        android:layout_marginBottom="@dimen/outer_margin"
+        android:backgroundTint="@color/button_color"
+        android:text="не-занят-работой"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:cornerRadius="100dp" />
+</LinearLayout>

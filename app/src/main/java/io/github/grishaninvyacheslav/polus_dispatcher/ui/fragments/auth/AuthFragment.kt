@@ -66,7 +66,7 @@ class AuthFragment : BaseFragment<FragmentAuthBinding>(FragmentAuthBinding::infl
                 signIn.isLoading = false
                 login.error = null
                 password.error = null
-                (requireActivity() as IBottomNavigation).openTabWithNavigationReset(TabTag.PAGE_1)
+                (requireActivity() as IBottomNavigation).openTabWithNavigationReset(TabTag.CURRENT_JOB)
             }
             is AuthState.AuthError -> {
                 binding.signIn.isLoading = false

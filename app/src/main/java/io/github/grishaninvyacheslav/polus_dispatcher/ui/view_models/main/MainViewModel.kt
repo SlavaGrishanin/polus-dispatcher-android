@@ -20,7 +20,7 @@ class MainViewModel(private val authRepository: IAuthRepository) : ViewModel() {
             if (authRepository.getLocalExecutorId() == null) {
                 mutableCurrentTabState.postValue(CurrentTabState.TabSelected(TabTag.AUTHORIZATION))
             } else {
-                mutableCurrentTabState.postValue(CurrentTabState.TabSelected(TabTag.PAGE_1))
+                mutableCurrentTabState.postValue(CurrentTabState.TabSelected(TabTag.CURRENT_JOB))
             }
         }.also { cancelableJobs.add(it) }
     }

@@ -1,9 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/currentJob"
         android:enabled="true"
         android:icon="@drawable/icon_current_job_48"
-        android:title="@string/page_1_title"/>
+        android:title="@string/job_title"/>
     <item
         android:id="@+id/sheet"
         android:enabled="true"

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="statuses">
+        <item>не-занят-задачей</item>
+        <item>готовлю-тс</item>
+        <item>тс-движется-к-заказу</item>
+        <item>работы-приастановленны</item>
+        <item>тс-выполняет-работы</item>
+        <item>не-могу-выпонить-заказ</item>
+        <item>отдых</item>
+    </string-array>
+</resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -11,23 +11,26 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
-            android:textSize="@dimen/major_text_size"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_color"
+            android:insetLeft="0dp"
             android:insetTop="0dp"
             android:insetRight="0dp"
             android:insetBottom="0dp"
-            android:insetLeft="0dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/major_text_size"
             app:cornerRadius="0dp"
-            android:layout_height="wrap_content"
-            tools:text="@string/sign_in"
-            tools:ignore="SpUsage" />
+            tools:ignore="SpUsage"
+            tools:text="@string/sign_in" />
     </FrameLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="match_parent"
-        android:background="@color/half_transparent_background" />
+        android:indeterminateTint="@color/button_color"
+        android:background="@color/half_transparent_background"
+        android:visibility="gone" />
 
 </FrameLayout>

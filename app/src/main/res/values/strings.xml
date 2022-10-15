@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Диспетчер Полюс</string>
-    <string name="page_1_title">Задача</string>
+    <string name="job_title">Задача</string>
     <string name="sheet_title">Обх.Лист</string>
     <string name="page_3_title">Профиль</string>
     <string name="page_4_title">Настройки</string>
@@ -15,4 +15,6 @@
     <string name="no_internet_connection_error">Нет подключения к интернету</string>
     <string name="server_not_responding_error">Сервер %1$s не отвечает</string>
     <string name="unknown_error">Ошибка: %1$s</string>
+    <string name="current_job_title">Ваша текущая задача:</string>
+    <string name="share_with_navigator">В наваигатор</string>
 </resources>
