@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "org.jetbrains.kotlin.kapt"
 }
 
 android {
@@ -31,6 +32,8 @@ android {
         it.buildConfigField "String", "PREFERENCES_EXECUTOR_ID_KEY", preferencesExecutorIdKey
         def apiUrl = properties.getProperty("API_URL", "[EXCEPTION PLACEHOLDER, LOOK AT BUILD.GRADLE: failed to extract apiUrl from api.properties]")
         it.buildConfigField "String", "API_URL", apiUrl
+        def roomPolusCacheDB = properties.getProperty("ROOM_POLUS_CACHE_DATABASE", "[EXCEPTION PLACEHOLDER, LOOK AT BUILD.GRADLE: failed to extract roomPolusCacheDB from api.properties]")
+        it.buildConfigField "String", "ROOM_POLUS_CACHE_DATABASE", roomPolusCacheDB
     }
     buildFeatures {
         viewBinding true
@@ -91,4 +94,10 @@ dependencies {
 
     // HttpLoggingInterceptor - логирование Retrofit
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+
+    // Local DB
+    def room_version = '2.4.2'
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 }

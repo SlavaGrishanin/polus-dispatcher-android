@@ -1,6 +1,7 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.domain.di
 
 import android.content.Context
+import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import io.github.grishaninvyacheslav.polus_dispatcher.BuildConfig
@@ -11,6 +12,8 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.JobsRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.profile.IProfileRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.profile.ProfileRepository
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.room.PolusCacheDao
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.room.PolusCacheDatabase
 import io.github.grishaninvyacheslav.polus_dispatcher.model.data_sources.IAuthDataSource
 import io.github.grishaninvyacheslav.polus_dispatcher.model.repositories.auth.AuthRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.model.repositories.auth.IAuthRepository
@@ -38,7 +41,7 @@ val appModule = module {
     single { provideScreens() }
     single { provideAuthRepository(get(), get()) }
     single { providePreferencesRepository(get()) }
-    single { provideJobsRepository(get(), get()) }
+    single { provideJobsRepository(get(), get(), get()) }
     single { provideProfileRepository(get(), get()) }
 
     viewModel { MainViewModel(get()) }
@@ -54,6 +57,9 @@ val appModule = module {
     single { provideGson() }
     single { provideJobApi() }
     single { provideExecutorApi() }
+
+    single<PolusCacheDatabase> { providePolusCacheDB(get()) }
+    single { get<PolusCacheDatabase>().dao()}
 }
 
 fun provideScreens(): IScreens = Screens()
@@ -69,8 +75,9 @@ fun providePreferencesRepository(
 
 fun provideJobsRepository(
     jobsApi: IJobsDataSource,
-    authRepository: IAuthRepository
-): IJobsRepository = JobsRepository(jobsApi, authRepository)
+    authRepository: IAuthRepository,
+    cache: PolusCacheDao
+): IJobsRepository = JobsRepository(jobsApi, authRepository, cache)
 
 fun provideProfileRepository(
     executorApi: IExecutorDataSource,
@@ -108,3 +115,9 @@ fun provideJobApi(): IJobsDataSource {
 fun provideExecutorApi(): IExecutorDataSource {
     return object : IExecutorDataSource {}
 }
+
+fun providePolusCacheDB(appContext: Context) =
+    Room.databaseBuilder(
+        appContext,
+        PolusCacheDatabase::class.java, BuildConfig.ROOM_POLUS_CACHE_DATABASE
+    ).build()
