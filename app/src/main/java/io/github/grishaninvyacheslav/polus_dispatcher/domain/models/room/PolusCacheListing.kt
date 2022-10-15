@@ -8,5 +8,6 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpande
 @Entity
 data class PolusCacheListing (
     @PrimaryKey val executorId: Int,
-    @ColumnInfo(name = "jobs") val jobs: List<JobExpandedEntity>
+    @ColumnInfo(name = "jobs") val jobs: List<JobExpandedEntity>,
+    @ColumnInfo(name = "cacheDate") val cacheDate: Long
 )

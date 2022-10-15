@@ -23,23 +23,23 @@ class JobsRepository(
                     200 -> {
                         if (cache.getById(executorId) == null) {
                             cache.insert(
-                                PolusCacheListing(executorId, body()!!)
+                                PolusCacheListing(executorId, body()!!, System.currentTimeMillis()/1000)
                             )
                         } else {
-                            cache.updateCache(PolusCacheListing(executorId, body()!!))
+                            cache.updateCache(PolusCacheListing(executorId, body()!!, System.currentTimeMillis()/1000))
                         }
                         FetchedJobs.SuccessJobFetch(body()!!)
                     }
                     else -> cache.getById(executorId)?.let {
-                        FetchedJobs.CachedJobs(it.jobs, 0, HttpException(this))
-                    } ?: FetchedJobs.CachedJobs(listOf(), 0, HttpException(this))
+                        FetchedJobs.CachedJobs(it.jobs, it.cacheDate, HttpException(this))
+                    } ?: FetchedJobs.CachedJobs(listOf(), System.currentTimeMillis()/1000, HttpException(this))
                 }
             }
         } catch (e: Exception) {
             if (e is java.net.ConnectException || e is java.net.SocketTimeoutException) {
                 return cache.getById(executorId)?.let {
-                    FetchedJobs.CachedJobs(it.jobs, 0, e)
-                } ?: FetchedJobs.CachedJobs(listOf(), 0, e)
+                    FetchedJobs.CachedJobs(it.jobs, it.cacheDate, e)
+                } ?: FetchedJobs.CachedJobs(listOf(), System.currentTimeMillis()/1000, e)
             }
             throw e
         }

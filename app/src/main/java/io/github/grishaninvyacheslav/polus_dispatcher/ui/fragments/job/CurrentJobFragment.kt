@@ -76,6 +76,7 @@ class CurrentJobFragment :
                         )
                     }
                 )
+
             }
             JobState.Loading -> {
                 dataRoot.isVisible = false
