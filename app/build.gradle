@@ -34,6 +34,8 @@ android {
         it.buildConfigField "String", "API_URL", apiUrl
         def roomPolusCacheDB = properties.getProperty("ROOM_POLUS_CACHE_DATABASE", "[EXCEPTION PLACEHOLDER, LOOK AT BUILD.GRADLE: failed to extract roomPolusCacheDB from api.properties]")
         it.buildConfigField "String", "ROOM_POLUS_CACHE_DATABASE", roomPolusCacheDB
+        def refreshRate = properties.getProperty("REFRESH_RATE", "[EXCEPTION PLACEHOLDER, LOOK AT BUILD.GRADLE: failed to extract refreshRate from api.properties]")
+        it.buildConfigField "String", "REFRESH_RATE", refreshRate
     }
     buildFeatures {
         viewBinding true

@@ -1,8 +1,10 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.github.grishaninvyacheslav.polus_dispatcher.BuildConfig
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpandedEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.FetchedJobs
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.IJobsRepository
@@ -10,10 +12,7 @@ import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.CancelableJobs
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.getNearest
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.toJobEntity
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class JobViewModel(
     private val jobsRepository: IJobsRepository,
@@ -26,23 +25,33 @@ class JobViewModel(
                 return mutableJobState
             }
             return mutableJobState.apply {
-                value = JobState.Loading
-                CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
-                    mutableJobState.postValue(
-                        when (val fetchedJobs = jobsRepository.getJobs()) {
-                            is FetchedJobs.CachedJobs -> JobState.Offline(
-                                fetchedJobs.jobs.getNearest(System.currentTimeMillis() / 1000),
-                                fetchedJobs.cacheDate,
-                                fetchedJobs.exception
-                            )
-                            is FetchedJobs.SuccessJobFetch -> JobState.Online(
-                                fetchedJobs.jobs.getNearest(System.currentTimeMillis() / 1000)
-                            )
-                        }
-                    )
-                }.also { cancelableJobs.add(it) }
+                mutableJobState.value = JobState.Loading
+                fetchJob()
             }
         }
+
+    private fun fetchJob() {
+        CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
+            mutableJobState.postValue(
+                when (val fetchedJobs = jobsRepository.getJobs()) {
+                    is FetchedJobs.CachedJobs -> {
+                        JobState.Offline(
+                            fetchedJobs.jobs.getNearest(System.currentTimeMillis() / 1000),
+                            fetchedJobs.cacheDate,
+                            fetchedJobs.exception
+                        )
+                    }
+                    is FetchedJobs.SuccessJobFetch -> JobState.Online(
+                        fetchedJobs.jobs.getNearest(System.currentTimeMillis() / 1000)
+                    )
+                }
+            )
+            CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
+                delay(BuildConfig.REFRESH_RATE.toLong())
+                fetchJob()
+            }
+        }.also { cancelableJobs.add(it) }
+    }
 
     private val jobExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         mutableJobState.postValue(JobState.Error(throwable))

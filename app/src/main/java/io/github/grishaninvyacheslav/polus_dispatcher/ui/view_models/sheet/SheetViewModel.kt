@@ -3,16 +3,14 @@ package io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.github.grishaninvyacheslav.polus_dispatcher.BuildConfig
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.FetchedJobs
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.models.repositories.jobs.IJobsRepository
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.auth.AuthState
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job.JobState
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.CancelableJobs
 import io.github.grishaninvyacheslav.polus_dispatcher.utils.getNearest
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class SheetViewModel(
     private val jobsRepository: IJobsRepository
@@ -25,22 +23,30 @@ class SheetViewModel(
             }
             return mutableSheetState.apply {
                 value = SheetState.Loading
-                CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
-                    mutableSheetState.postValue(
-                        when (val fetchedJobs = jobsRepository.getJobs()) {
-                            is FetchedJobs.CachedJobs -> SheetState.Offline(
-                                fetchedJobs.jobs,
-                                fetchedJobs.cacheDate,
-                                fetchedJobs.exception
-                            )
-                            is FetchedJobs.SuccessJobFetch -> SheetState.Online(
-                                fetchedJobs.jobs
-                            )
-                        }
-                    )
-                }.also { cancelableJobs.add(it) }
+                fetchSheet()
             }
         }
+
+    private fun fetchSheet() {
+        CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
+            mutableSheetState.postValue(
+                when (val fetchedJobs = jobsRepository.getJobs()) {
+                    is FetchedJobs.CachedJobs -> SheetState.Offline(
+                        fetchedJobs.jobs,
+                        fetchedJobs.cacheDate,
+                        fetchedJobs.exception
+                    )
+                    is FetchedJobs.SuccessJobFetch -> SheetState.Online(
+                        fetchedJobs.jobs
+                    )
+                }
+            )
+            CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
+                delay(BuildConfig.REFRESH_RATE.toLong())
+                fetchSheet()
+            }
+        }.also { cancelableJobs.add(it) }
+    }
 
     private val sheetExceptionHandler = CoroutineExceptionHandler { _, throwable ->
         mutableSheetState.postValue(SheetState.Error(throwable))

@@ -21,6 +21,9 @@ import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet.Sheet
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet.SheetViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.yandex.runtime.image.ImageProvider
+import io.github.grishaninvyacheslav.polus_dispatcher.ui.IBottomNavigation
+import io.github.grishaninvyacheslav.polus_dispatcher.utils.timestampToDate
+import java.net.ConnectException
 
 class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::inflate) {
 
@@ -40,18 +43,34 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         viewModel.sheetState.observe(viewLifecycleOwner) { renderSheetState(it) }
     }
 
-    private fun initView() = with(binding){
+    private fun initView() = with(binding) {
 
     }
 
     private fun renderSheetState(state: SheetState) {
         Log.d("[MYLOG]", "renderSheetState: $state")
-        with(binding){
+        with(binding) {
             when (state) {
                 is SheetState.Online -> {
-                    initList(state.sheet)
-                    progressBar.isVisible = false
-                    sheetList.isVisible = true
+                    showSheetData(state.sheet)
+                    (requireActivity() as IBottomNavigation).showErrorMessage("")
+                }
+                is SheetState.Offline -> {
+                    state.sheet?.let { showSheetData(it) }
+                    when (state.exception) {
+                        is ConnectException -> String.format(
+                            getString(R.string.internet_is_lost_used_cache),
+                            state.offlineDate.timestampToDate()
+                        )
+                        is java.net.SocketTimeoutException -> String.format(
+                            getString(R.string.server_is_lost_used_cache),
+                            state.offlineDate.timestampToDate()
+                        )
+                        else -> String.format(
+                            getString(R.string.unknown_error),
+                            state.exception.message
+                        )
+                    }
                 }
                 SheetState.Loading -> {
                     progressBar.isVisible = true
@@ -62,6 +81,12 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
                 }
             }
         }
+    }
+
+    private fun showSheetData(sheet: List<JobExpandedEntity>) = with(binding) {
+        initList(sheet)
+        progressBar.isVisible = false
+        sheetList.isVisible = true
     }
 
     private fun initList(log: List<JobExpandedEntity>) = with(binding) {
@@ -91,7 +116,11 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         override fun bindView(view: ISheetItemView) = with(sheetEntries[view.pos]) {
             with(view) {
                 setTitle(title)
-                setLocation(lat.toDouble(), lon.toDouble(), ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location))
+                setLocation(
+                    lat.toDouble(),
+                    lon.toDouble(),
+                    ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location)
+                )
             }
         }
     }

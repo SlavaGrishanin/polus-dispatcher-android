@@ -57,6 +57,7 @@ class CurrentJobFragment :
         when (state) {
             is JobState.Online -> {
                 showJobData(state.job)
+                (requireActivity() as IBottomNavigation).showErrorMessage("")
             }
             is JobState.Offline -> {
                 showJobData(state.job)
