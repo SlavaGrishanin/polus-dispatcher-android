@@ -16,6 +16,7 @@ import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.BaseFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.test.TestSubFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job.JobState
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.job.JobViewModel
+import io.github.grishaninvyacheslav.polus_dispatcher.utils.timestampToClockTime
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CurrentJobFragment :
@@ -72,6 +73,16 @@ class CurrentJobFragment :
                     placeholder.isVisible = false
                     statusTitle.isVisible = true
                     status.isVisible = true
+                    currentJobTitle.text = state.job.title
+                    time.text = String.format(
+                        getString(R.string.current_job_time),
+                        state.job.startDate.timestampToClockTime(),
+                        state.job.endDate.timestampToClockTime()
+                    )
+                    requiredVehicle.text =
+                        state.job.requiredVehicle.model ?: state.job.requiredVehicle.characteristic
+                    customer.text = state.job.customerId
+
                 }
             }
             JobState.Loading -> {

@@ -14,6 +14,6 @@ data class JobEntity(
 )
 
 data class RequiredVehicle(
-    val characteristic: String,
-    val model: String
+    val characteristic: String?,
+    val model: String?
 )

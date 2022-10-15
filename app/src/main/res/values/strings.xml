@@ -30,5 +30,6 @@
     <string name="your_profile_title">ВАШ ПРОФИЛЬ</string>
     <string name="settings_page_title">НАСТРОЙКИ</string>
     <string name="no_job">У вас пока нет задач на сегодня.\nНа этом экране отобразится ближайший заказ.</string>
-    <string name="loading_job">Идёт запрос заказа с сервера.</string>
+    <string name="loading_job">Загрузка заказа.</string>
+    <string name="current_job_time">ВРЕМЯ: %1$s - %2$s</string>
 </resources>
