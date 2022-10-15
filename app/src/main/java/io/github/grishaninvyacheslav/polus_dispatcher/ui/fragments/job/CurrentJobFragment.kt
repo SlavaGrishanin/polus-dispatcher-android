@@ -65,6 +65,7 @@ class CurrentJobFragment :
                     placeholder.isVisible = false
                     statusTitle.isVisible = true
                     status.text = when (state.job.status) {
+
                         "planned" -> getString(R.string.free)
                         "preparing" -> getString(R.string.preparing)
                         "heading" -> getString(R.string.status_heading)
@@ -72,7 +73,7 @@ class CurrentJobFragment :
                         "in_progress" -> getString(R.string.status_engaged)
                         "troubled" -> getString(R.string.status_unavailable)
                         "resting" -> getString(R.string.status_resting)
-                        "completed " -> getString(R.string.status_completed)
+                        "completed" -> getString(R.string.status_completed)
                         else -> getString(R.string.unknown_status)
                     }
                     status.isVisible = true
