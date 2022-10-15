@@ -128,6 +128,10 @@ class MainActivity : AppCompatActivity(), IBottomNavigation {
         }
     }
 
+    override fun showErrorMessage(message: String) {
+        binding.errorMessage.text = message
+    }
+
     override fun onBackPressed() {
         val fm = supportFragmentManager
         var fragment: Fragment? = null

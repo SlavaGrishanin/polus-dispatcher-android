@@ -15,23 +15,25 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/major_text_size"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
         android:id="@+id/sign_out"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/outer_margin"
         android:layout_marginTop="@dimen/outer_margin"
         android:backgroundTint="@color/button_background_tint"
-        android:text="@string/exit_from_account" />
+        android:text="@string/exit_from_account"
+        android:textColor="@color/black" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
         android:id="@+id/finish_application"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/outer_margin"
         android:layout_marginTop="@dimen/outer_margin"
         android:backgroundTint="@color/button_background_tint"
-        android:text="Выключить приложение" />
+        android:text="Выключить приложение"
+        android:textColor="@color/black" />
 </LinearLayout>

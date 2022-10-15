@@ -1,7 +1,9 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.sheet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
@@ -40,18 +42,25 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
 
     }
 
-    private fun renderSheetState(state: SheetState) =
-        when (state) {
-            is SheetState.Success -> {
-                initList(state.sheet)
-            }
-            SheetState.Loading -> {
-                // TODO()
-            }
-            is SheetState.Error -> {
-                // TODO()
+    private fun renderSheetState(state: SheetState) {
+        Log.d("[MYLOG]", "renderSheetState: $state")
+        with(binding){
+            when (state) {
+                is SheetState.Success -> {
+                    initList(state.sheet)
+                    progressBar.isVisible = false
+                    sheetList.isVisible = true
+                }
+                SheetState.Loading -> {
+                    progressBar.isVisible = true
+                    sheetList.isVisible = false
+                }
+                is SheetState.Error -> {
+                    // TODO()
+                }
             }
         }
+    }
 
     private fun initList(log: List<JobEntity>) = with(binding) {
         sheetList.layoutManager = LinearLayoutManager(requireContext())

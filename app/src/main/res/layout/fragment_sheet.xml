@@ -17,6 +17,15 @@
         android:textSize="@dimen/major_text_size"
         android:textStyle="bold" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:indeterminateTint="@color/button_color"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sheet_list"
         android:layout_width="match_parent"
