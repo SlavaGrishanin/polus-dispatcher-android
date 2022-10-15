@@ -12,12 +12,9 @@ import com.yandex.mapkit.map.IconStyle
 import com.yandex.runtime.image.ImageProvider
 import io.github.grishaninvyacheslav.polus_dispatcher.R
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.FragmentTestMapBinding
-import io.github.grishaninvyacheslav.polus_dispatcher.domain.di.providers.LocalCiceroneHolder
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.TabTag
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.BaseFragment
-import io.github.grishaninvyacheslav.polus_dispatcher.ui.screens.IScreens
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.test.SubViewModel
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.random.Random
 

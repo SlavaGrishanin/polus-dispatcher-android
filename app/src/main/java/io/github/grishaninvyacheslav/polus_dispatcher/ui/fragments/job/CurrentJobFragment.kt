@@ -1,6 +1,8 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.job
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +10,12 @@ import android.view.View
 import androidx.core.view.isVisible
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
+import com.yandex.mapkit.Animation
+import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.map.IconStyle
+import com.yandex.runtime.image.ImageProvider
 import io.github.grishaninvyacheslav.polus_dispatcher.R
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.DialogStatusPickerBinding
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.FragmentCurrentJobBinding
@@ -75,6 +83,27 @@ class CurrentJobFragment :
                     statusTitle.isVisible = true
                     status.isVisible = true
                     currentJobTitle.text = state.job.title
+
+                    binding.mapView.map.mapObjects.addPlacemark(
+                        Point(state.job.lat.toDouble(), state.job.lon.toDouble()),
+                        ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location),
+                        IconStyle().apply {
+                            scale = 0.2f
+                        }
+                    )
+
+                    binding.mapView.map.move(
+                        CameraPosition(Point(state.job.lat.toDouble(), state.job.lon.toDouble()), 11.0f, 0.0f, 0.0f),
+                        Animation(Animation.Type.SMOOTH, 0F),
+                        null
+                    )
+
+                    binding.shareWithNavigator.setOnClickListener {
+                        val intent = Intent(Intent.ACTION_VIEW);
+                        intent.data = Uri.parse("geo:${state.job.lat},${state.job.lon}?z=11");
+                        startActivity(intent)
+                    }
+
                     time.text = String.format(
                         getString(R.string.current_job_time),
                         state.job.startDate.timestampToClockTime(),
@@ -108,6 +137,19 @@ class CurrentJobFragment :
             }
         }
     }
+
+    override fun onStop() {
+        binding.mapView.onStop()
+        MapKitFactory.getInstance().onStop()
+        super.onStop()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        MapKitFactory.getInstance().onStart()
+        binding.mapView.onStart()
+    }
+
 
     override fun onBackPressed() {
         // TODO: Toast нажмите назад три раза (в течеении времени или по локальному счётчику) чтобы вернуться

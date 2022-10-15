@@ -17,8 +17,8 @@ interface IJobsDataSource {
                 startDate = "1667120400",
                 endDate = "1667149200",
                 status = "planning",
-                lon = "56.868903",
-                lat = "42.035278",
+                lon = "42.035278",
+                lat = "56.868903",
                 customer = Customer(
                     "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
                     "78005553535",
@@ -36,8 +36,8 @@ interface IJobsDataSource {
                 startDate = "1666688400",
                 endDate = "1666717200",
                 status = "planning",
-                lon = "56.868903",
-                lat = "42.035278",
+                lon = "42.035278",
+                lat = "56.868903",
                 customer = Customer(
                     "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
                     "78005553535",
@@ -55,8 +55,8 @@ interface IJobsDataSource {
                 startDate = "1666947600",
                 endDate = "1666976400",
                 status = "planning",
-                lon = "56.868903",
-                lat = "42.035278",
+                lon = "42.035278",
+                lat = "56.868903",
                 customer = Customer(
                     "d478-b8efa17c-4f48-b4a5-077e8f3edb1f",
                     "78005553535",
