@@ -7,6 +7,8 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
+import com.yandex.mapkit.MapKitFactory
+import io.github.grishaninvyacheslav.polus_dispatcher.R
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.FragmentSheetBinding
 import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.TabTag
@@ -15,10 +17,10 @@ import io.github.grishaninvyacheslav.polus_dispatcher.ui.adapters.sheet.ISheetIt
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.adapters.sheet.SheetListAdapter
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.BaseFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.test.TestSubFragment
-import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.auth.AuthViewModel
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet.SheetState
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.view_models.sheet.SheetViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.yandex.runtime.image.ImageProvider
 
 class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::inflate) {
 
@@ -89,7 +91,18 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         override fun bindView(view: ISheetItemView) = with(sheetEntries[view.pos]) {
             with(view) {
                 setTitle(title)
+                setLocation(lat.toDouble(), lon.toDouble(), ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location))
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        MapKitFactory.getInstance().onStart()
+    }
+
+    override fun onStop() {
+        MapKitFactory.getInstance().onStop()
+        super.onStop()
     }
 }

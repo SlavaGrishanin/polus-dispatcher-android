@@ -3,6 +3,7 @@ package io.github.grishaninvyacheslav.polus_dispatcher.ui.adapters.sheet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.yandex.mapkit.MapKitFactory
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.ItemSheetEntryBinding
 
 class SheetListAdapter(
@@ -19,6 +20,16 @@ class SheetListAdapter(
             ),
             onItemClick
         )
+
+    override fun onViewAttachedToWindow(holder: SheetEntryViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.onStart()
+    }
+
+    override fun onViewDetachedFromWindow(holder: SheetEntryViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.onStop()
+    }
 
     override fun getItemCount() = dataModel.getCount()
 

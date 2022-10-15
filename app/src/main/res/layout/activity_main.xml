@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/button_background_tint"
-            android:text="Нет интернета"
+            android:text="Нет интернета. Данные за 18:00 01.01.22"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textStyle="bold" />

@@ -11,25 +11,25 @@ class AuthRepository(
     private val authApi: IAuthDataSource,
     private val preferencesRepository: IPreferencesRepository,
 ) : IAuthRepository {
-    private var localExecutorID: String? = null
+    private var localExecutorID: String? = "mock"
 
     private var rememberMe = true
 
     override suspend fun signIn(login: String, password: String, rememberMe: Boolean) {
         this.rememberMe = rememberMe
-        with(authApi.signIn(SignInBody(login, password)).awaitResponse()){
-            when(code()){
-                200 -> {
-                    localExecutorID = body()?.executorId
-                    localExecutorID?.let {
-                        if (rememberMe) {
-                            preferencesRepository.saveString(BuildConfig.PREFERENCES_EXECUTOR_ID_KEY, it)
-                        }
-                    }
-                }
-                else -> throw HttpException(this)
-            }
-        }
+//        with(authApi.signIn(SignInBody(login, password)).awaitResponse()){
+//            when(code()){
+//                200 -> {
+//                    localExecutorID = body()?.executorId
+//                    localExecutorID?.let {
+//                        if (rememberMe) {
+//                            preferencesRepository.saveString(BuildConfig.PREFERENCES_EXECUTOR_ID_KEY, it)
+//                        }
+//                    }
+//                }
+//                else -> throw HttpException(this)
+//            }
+//        }
     }
 
     override suspend fun getLocalExecutorId(): String? {

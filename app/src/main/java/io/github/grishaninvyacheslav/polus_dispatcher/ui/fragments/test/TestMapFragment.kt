@@ -53,16 +53,17 @@ class TestMapFragment : BaseFragment<FragmentTestMapBinding>(FragmentTestMapBind
         binding.message.text = "fragment: sub $containerTag\ninstance: ${Random.nextInt(0, 100)}"
     }
 
-    override fun onStop() {
-        binding.mapView.onStop()
-        MapKitFactory.getInstance().onStop()
-        super.onStop()
-    }
-
     override fun onStart() {
         super.onStart()
         MapKitFactory.getInstance().onStart()
         binding.mapView.onStart()
+    }
+
+
+    override fun onStop() {
+        binding.mapView.onStop()
+        MapKitFactory.getInstance().onStop()
+        super.onStop()
     }
 
     override fun onBackPressed() {
