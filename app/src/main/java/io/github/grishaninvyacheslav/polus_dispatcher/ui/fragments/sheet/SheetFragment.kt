@@ -39,12 +39,8 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        binding.refresh.setOnClickListener { viewModel.fetchSheet() }
         viewModel.sheetState.observe(viewLifecycleOwner) { renderSheetState(it) }
-    }
-
-    private fun initView() = with(binding) {
-
     }
 
     private fun renderSheetState(state: SheetState) {
@@ -121,6 +117,8 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
                     lon.toDouble(),
                     ImageProvider.fromResource(requireContext(), R.drawable.icon_job_location)
                 )
+                setStartDate(startDate)
+                setVehiclesDescription(modelVehicle ?: typeVehicle)
             }
         }
     }

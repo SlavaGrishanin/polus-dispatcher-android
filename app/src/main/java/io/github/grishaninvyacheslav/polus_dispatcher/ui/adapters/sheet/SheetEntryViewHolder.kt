@@ -6,8 +6,8 @@ import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.map.IconStyle
 import com.yandex.runtime.image.ImageProvider
-import io.github.grishaninvyacheslav.polus_dispatcher.R
 import io.github.grishaninvyacheslav.polus_dispatcher.databinding.ItemSheetEntryBinding
+import io.github.grishaninvyacheslav.polus_dispatcher.utils.timestampToDate
 
 class SheetEntryViewHolder(
     private val binding: ItemSheetEntryBinding,
@@ -22,7 +22,7 @@ class SheetEntryViewHolder(
 
     override var pos = -1
 
-    override fun setLocation(lat: Double, lon: Double, imageProvider: ImageProvider){
+    override fun setLocation(lat: Double, lon: Double, imageProvider: ImageProvider) {
         binding.mapView.map.mapObjects.addPlacemark(
             Point(lat, lon),
             imageProvider,
@@ -40,6 +40,14 @@ class SheetEntryViewHolder(
 
     override fun setTitle(title: String) {
         binding.title.text = title
+    }
+
+    override fun setStartDate(timestamp: Long) {
+        binding.date.text = "НАЧАЛО: ${timestamp.timestampToDate()}"
+    }
+
+    override fun setVehiclesDescription(description: String) {
+        binding.requiredVehicleTitle.text = "ТЕХНИКА: $description"
     }
 
     override fun onStart() {

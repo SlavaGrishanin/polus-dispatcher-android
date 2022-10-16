@@ -63,6 +63,15 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/refresh_48"
+                app:layout_constraintBottom_toBottomOf="@id/title"
+                app:layout_constraintRight_toRightOf="@id/title"
+                app:layout_constraintTop_toTopOf="@id/title" />
+
             <TextView
                 android:id="@+id/current_job_title"
                 android:layout_width="0dp"

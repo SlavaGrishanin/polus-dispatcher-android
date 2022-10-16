@@ -4,13 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/drawable/layout_card_bg.xml" value="0.2065" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/drawable/refresh_48.xml" value="0.184" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/dialog_status_picker.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_auth.xml" value="0.264" />
-        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_current_job.xml" value="0.2" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_current_job.xml" value="0.4" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_settings.xml" value="0.2" />
-        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_sheet.xml" value="0.176" />
+        <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_sheet.xml" value="0.264" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_sheet_entry.xml" value="0.152" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_tab_container.xml" value="0.1" />
         <entry key="..\:/Users/Saeng/AndroidStudioProjects/polusdispatcher2/app/src/main/res/layout/fragment_test_main.xml" value="0.1" />

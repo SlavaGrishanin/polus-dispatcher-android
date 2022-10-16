@@ -6,6 +6,8 @@ interface ISheetItemView {
     var pos: Int
     fun setLocation(lat: Double, lon: Double, imageProvider: ImageProvider)
     fun setTitle(title: String)
+    fun setStartDate(timestamp: Long)
+    fun setVehiclesDescription(description: String)
     fun onStart()
     fun onStop()
 }

@@ -30,7 +30,7 @@ class JobViewModel(
             }
         }
 
-    private fun fetchJob() {
+    fun fetchJob() {
         CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
             mutableJobState.postValue(
                 when (val fetchedJobs = jobsRepository.getJobs()) {
@@ -46,10 +46,6 @@ class JobViewModel(
                     )
                 }
             )
-            CoroutineScope(Dispatchers.IO + jobExceptionHandler).launch {
-                delay(BuildConfig.REFRESH_RATE.toLong())
-                fetchJob()
-            }
         }.also { cancelableJobs.add(it) }
     }
 

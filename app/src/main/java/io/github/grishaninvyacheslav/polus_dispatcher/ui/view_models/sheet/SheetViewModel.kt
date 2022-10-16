@@ -27,7 +27,7 @@ class SheetViewModel(
             }
         }
 
-    private fun fetchSheet() {
+    fun fetchSheet() {
         CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
             mutableSheetState.postValue(
                 when (val fetchedJobs = jobsRepository.getJobs()) {
@@ -41,10 +41,6 @@ class SheetViewModel(
                     )
                 }
             )
-            CoroutineScope(Dispatchers.IO + sheetExceptionHandler).launch {
-                delay(BuildConfig.REFRESH_RATE.toLong())
-                fetchSheet()
-            }
         }.also { cancelableJobs.add(it) }
     }
 

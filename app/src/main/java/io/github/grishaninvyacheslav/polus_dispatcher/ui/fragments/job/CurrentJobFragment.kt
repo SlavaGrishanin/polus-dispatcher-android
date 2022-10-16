@@ -49,6 +49,7 @@ class CurrentJobFragment :
         viewModel.jobState.observe(viewLifecycleOwner) { renderJobState(it) }
         with(binding) {
             mapViewBlock.setOnClickListener { }
+            refresh.setOnClickListener { viewModel.fetchJob() }
         }
     }
 
