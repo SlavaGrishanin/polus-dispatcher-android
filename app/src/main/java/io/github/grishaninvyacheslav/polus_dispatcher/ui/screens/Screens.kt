@@ -1,6 +1,7 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.ui.screens
 
 import com.github.terrakok.cicerone.androidx.FragmentScreen
+import io.github.grishaninvyacheslav.polus_dispatcher.domain.entities.JobExpandedEntity
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.TabTag
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.auth.AuthFragment
 import io.github.grishaninvyacheslav.polus_dispatcher.ui.fragments.job.CurrentJobFragment
@@ -16,7 +17,7 @@ class Screens: IScreens {
     override fun auth(tabTag: TabTag) = FragmentScreen { AuthFragment.newInstance(tabTag) }
     override fun currentJob(tabTag: TabTag) = FragmentScreen { CurrentJobFragment.newInstance(tabTag) }
     override fun sheet(tabTag: TabTag) = FragmentScreen { SheetFragment.newInstance(tabTag) }
-    override fun sheetEntry(tabTag: TabTag) = FragmentScreen { SheetEntryFragment.newInstance(tabTag) }
+    override fun sheetEntry(tabTag: TabTag, job: JobExpandedEntity) = FragmentScreen { SheetEntryFragment.newInstance(tabTag, job) }
     override fun profile(tabTag: TabTag) = FragmentScreen { ProfileFragment.newInstance(tabTag) }
     override fun settings(tabTag: TabTag) = FragmentScreen { SettingsFragment.newInstance(tabTag) }
 

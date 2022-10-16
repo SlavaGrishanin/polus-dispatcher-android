@@ -1,5 +1,7 @@
 package io.github.grishaninvyacheslav.polus_dispatcher.domain.entities
 
+import java.io.Serializable
+
 data class JobExpandedEntity(
     val id: Int,
     val title: String,
@@ -13,7 +15,7 @@ data class JobExpandedEntity(
     val modelVehicle: String,
     val numberVehicle: String,
     val executor: Executor
-)
+): Serializable
 
 data class Customer(
     val id: Int,
@@ -21,7 +23,7 @@ data class Customer(
     val password: String,
     val type: String,
     val name: String
-)
+): Serializable
 
 data class ModelVehicle(
     val id: Int,
@@ -36,5 +38,5 @@ data class Executor(
     val name: String,
     val lon: Double,
     val lat: Double
-)
+): Serializable
 

@@ -53,20 +53,22 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
                 }
                 is SheetState.Offline -> {
                     state.sheet?.let { showSheetData(it) }
-                    when (state.exception) {
-                        is ConnectException -> String.format(
-                            getString(R.string.internet_is_lost_used_cache),
-                            state.offlineDate.timestampToDate()
-                        )
-                        is java.net.SocketTimeoutException -> String.format(
-                            getString(R.string.server_is_lost_used_cache),
-                            state.offlineDate.timestampToDate()
-                        )
-                        else -> String.format(
-                            getString(R.string.unknown_error),
-                            state.exception.message
-                        )
-                    }
+                    (requireActivity() as IBottomNavigation).showErrorMessage(
+                        when (state.exception) {
+                            is ConnectException -> String.format(
+                                getString(R.string.internet_is_lost_used_cache),
+                                state.offlineDate.timestampToDate()
+                            )
+                            is java.net.SocketTimeoutException -> String.format(
+                                getString(R.string.server_is_lost_used_cache),
+                                state.offlineDate.timestampToDate()
+                            )
+                            else -> String.format(
+                                getString(R.string.unknown_error),
+                                state.exception.message
+                            )
+                        }
+                    )
                 }
                 SheetState.Loading -> {
                     progressBar.isVisible = true
@@ -89,7 +91,14 @@ class SheetFragment : BaseFragment<FragmentSheetBinding>(FragmentSheetBinding::i
         sheetList.layoutManager = LinearLayoutManager(requireContext())
         adapter = SheetListAdapter(
             sheetDataModel.apply { sheetEntries = log },
-            onItemClick = { cicerone.router.navigateTo(screens.sheetEntry(containerTag)) },
+            onItemClick = {
+                cicerone.router.navigateTo(
+                    screens.sheetEntry(
+                        containerTag,
+                        sheetDataModel.sheetEntries[it.pos]
+                    )
+                )
+            },
         )
         sheetList.adapter = adapter
     }
