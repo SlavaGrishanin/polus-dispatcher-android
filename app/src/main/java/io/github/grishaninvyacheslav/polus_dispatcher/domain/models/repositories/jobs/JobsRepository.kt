@@ -45,9 +45,6 @@ class JobsRepository(
     }
 
     override suspend fun updateJobStatus(jobEntity: JobEntity) {
-        // Обновить локальную
-        // Запланировать запрос
-        val executorId = authRepository.getLocalExecutorId()!!
         with(jobsApi.updateJob(jobEntity).awaitResponse()) {
             when (code()) {
                 200 -> {}
